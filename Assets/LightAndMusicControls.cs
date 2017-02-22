@@ -9,6 +9,7 @@ public class LightAndMusicControls : MonoBehaviour {
 
 	private AudioSource music;
 	private float timer;
+	private float danceTimer = 5;
 	private bool isActive = false;
 
 	// Use this for initialization
@@ -24,15 +25,22 @@ public class LightAndMusicControls : MonoBehaviour {
 			activateBox ();
 		}
 
-		if (switchObject.GetComponent<HasEnteredTrigger> ().enteredTrigger) {
+		if (switchObject.GetComponent<HasEnteredTrigger> ().enteredTrigger && isActive) {
+			danceTimer -= Time.deltaTime;
+
+		}
+
+		if (isActive && danceTimer <= 0) {
 			deactivateBox ();
 		}
+
 	}
 
 	void activateBox(){
 		isActive = true;
 		music.Play ();
 		lightObject.SetActive (true);
+		danceTimer = 5;
 	}
 
 	void deactivateBox(){
@@ -43,6 +51,6 @@ public class LightAndMusicControls : MonoBehaviour {
 	}
 
 	void resetTimer(){
-		timer = Random.Range (5, 10);
+		timer = Random.Range (10, 20);
 	}
 }
