@@ -19,7 +19,7 @@ public class LightAndMusicControls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timer -= Time.realtimeSinceStartup;
+		timer -= Time.deltaTime;
 		if (timer <= 0 && !isActive) {
 			activateBox ();
 		}
@@ -43,6 +43,6 @@ public class LightAndMusicControls : MonoBehaviour {
 	}
 
 	void resetTimer(){
-		timer = Random.Range (500, 600);
+		timer = Random.Range (5, 10);
 	}
 }
