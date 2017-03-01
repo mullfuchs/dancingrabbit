@@ -9,6 +9,7 @@ public class LightAndMusicControls : MonoBehaviour {
 
 	private AudioSource music;
 	private float timer;
+	private float pitchAmount = 0;
 	private float danceTimer = 5;
 	private bool isActive = false;
 
@@ -16,6 +17,7 @@ public class LightAndMusicControls : MonoBehaviour {
 	void Start () {
 		resetTimer ();
 		music = GetComponent<AudioSource> ();
+		music.pitch = 0;
 	}
 	
 	// Update is called once per frame
@@ -34,6 +36,20 @@ public class LightAndMusicControls : MonoBehaviour {
 			deactivateBox ();
 		}
 
+		if (isActive) {
+			if (music.pitch < 1) {
+				music.pitch += Mathf.Lerp (0, 1, Time.deltaTime * 0.5f);
+			}
+			 
+		}
+
+		if (!isActive) {
+			if (music.pitch > 0) {
+				music.pitch -= Mathf.Lerp (0, 1, Time.deltaTime * 0.2f);
+			} else {
+				music.Pause ();
+			}
+		}
 	}
 
 	void activateBox(){
@@ -44,7 +60,7 @@ public class LightAndMusicControls : MonoBehaviour {
 	}
 
 	void deactivateBox(){
-		music.Pause ();
+		//music.Pause ();
 		lightObject.SetActive (false);
 		resetTimer ();
 		isActive = false;
