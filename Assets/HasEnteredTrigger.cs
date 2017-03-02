@@ -18,9 +18,11 @@ public class HasEnteredTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(){
 		enteredTrigger = true;
+		print ("game object entered trigger");
 	}
 
 	void OnTriggerExit(){
 		enteredTrigger = false;
+		print ("game object exited trigger");
 	}
 }

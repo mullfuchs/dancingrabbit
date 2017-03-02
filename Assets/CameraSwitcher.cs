@@ -18,12 +18,25 @@ public class CameraSwitcher : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(){
-		camera1.enabled = !camera1.enabled;
-		camera2.enabled = !camera2.enabled;
+		switchCameras ();
 	}
 
 	void OnTriggerExit(){
+		switchCameras ();
+	}
+
+	void switchCameras (){
 		camera1.enabled = !camera1.enabled;
 		camera2.enabled = !camera2.enabled;
+		setPrimaryCamera (camera1);
+		setPrimaryCamera (camera2);
+	}
+
+	void setPrimaryCamera(Camera inCamera){
+		if (inCamera.enabled) {
+			inCamera.tag = "MainCamera";
+		} else {
+			inCamera.tag = "Untagged";
+		}
 	}
 }
