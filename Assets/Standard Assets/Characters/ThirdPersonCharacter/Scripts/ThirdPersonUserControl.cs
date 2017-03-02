@@ -42,6 +42,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
 
+		public void ResetMainCamera(){
+			m_Cam = Camera.main.transform;
+		}
+
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {

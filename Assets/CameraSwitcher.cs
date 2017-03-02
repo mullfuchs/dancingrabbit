@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraSwitcher : MonoBehaviour {
 	public Camera camera1;
 	public Camera camera2;
-
+	public GameObject playerObject;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +30,7 @@ public class CameraSwitcher : MonoBehaviour {
 		camera2.enabled = !camera2.enabled;
 		setPrimaryCamera (camera1);
 		setPrimaryCamera (camera2);
+		playerObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl> ().ResetMainCamera ();
 	}
 
 	void setPrimaryCamera(Camera inCamera){
