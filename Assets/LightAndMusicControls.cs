@@ -5,6 +5,7 @@ public class LightAndMusicControls : MonoBehaviour {
 
 	public GameObject switchObject;
 	public GameObject lightObject;
+	public GameObject DanceFloorObject;
 
 
 	private AudioSource music;
@@ -12,6 +13,7 @@ public class LightAndMusicControls : MonoBehaviour {
 	private float pitchAmount = 0;
 	private float danceTimer = 5;
 	private bool isActive = false;
+	private float danceFloorRotation = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +30,8 @@ public class LightAndMusicControls : MonoBehaviour {
 		}
 
 		if (switchObject.GetComponent<HasEnteredTrigger> ().enteredTrigger && isActive) {
+			//danceFloorRotation = 1;
+			DanceFloorObject.transform.Rotate (0, 0, danceFloorRotation);
 			danceTimer -= Time.deltaTime;
 
 		}
